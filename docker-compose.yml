@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+
+  petio:
+    image: ghcr.io/petio-team/petio:latest
+    container_name: "petio"
+    hostname: petio
+    ports:
+      - "7777:7777"
+    networks:
+      - private
+    depends_on:
+      - mongo
+    user: "1000:1000"
+    environment:
+      - TZ=Etc/UTC
+    volumes:
+      - ${app_data}/petio:/app/api/config
+      - ${app_data}/petio/logs:/app/logs
+
+  mongo:
+    image: mongo:latest
+    container_name: "mongo"
+    hostname: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - private
+    user: "1000:1000"
+    volumes:
+      - ${app_data}/mongo:/data/db
+
+networks:
+  private:
+    driver: bridge
+#    external: true
