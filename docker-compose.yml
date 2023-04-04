@@ -14,7 +14,7 @@ services:
       - mongo
     user: "1000:1000"
     environment:
-      - TZ=Etc/UTC
+      - TZ=$tzone
     volumes:
       - ${app_data}/petio:/app/api/config
       - ${app_data}/petio/logs:/app/logs
