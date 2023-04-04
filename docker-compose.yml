@@ -4,7 +4,7 @@ services:
 
   petio:
     image: ghcr.io/petio-team/petio:latest
-    container_name: "petio"
+    container_name: petio
     hostname: petio
     ports:
       - "7777:7777"
@@ -20,8 +20,8 @@ services:
       - ${app_data}/petio/logs:/app/logs
 
   mongo:
-    image: mongo:latest
-    container_name: "mongo"
+    image: mongo:4.4
+    container_name: mongo
     hostname: mongo
     ports:
       - "27017:27017"
