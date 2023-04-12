@@ -20,7 +20,7 @@ services:
       - ${app_data}/petio/logs:/app/logs
 
   mongo:
-    image: mongo:4.4
+    image: mongo:latest
     container_name: mongo
     hostname: mongo
     ports:
