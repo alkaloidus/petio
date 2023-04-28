@@ -18,10 +18,11 @@ services:
     volumes:
       - ${app_data}/petio:/app/api/config
       - ${app_data}/petio/logs:/app/logs
-
+    restart: unless-stopped
   mongo:
     image: mongo:latest
     container_name: mongo
+    entrypoint: ["db.adminCommand( { setFeatureCompatibilityVersion: "5.0" } )"]
     hostname: mongo
     ports:
       - "27017:27017"
@@ -30,6 +31,7 @@ services:
     user: "1000:1000"
     volumes:
       - ${app_data}/mongo:/data/db
+    restart: unless-stopped
 
 networks:
   private:
